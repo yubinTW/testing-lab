@@ -23,12 +23,26 @@ start development mode
 npm run dev
 ```
 
+### Run the test
+
+```
+npm run test
+```
+
 ## Frontend
 
 React (by vite)
+
+### Development
 
 start development mode
 ```
 cd frontend
 npm run dev
+```
+
+### Run cypress test
+
+```
+npm run cy:test
 ```
