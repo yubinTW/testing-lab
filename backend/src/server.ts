@@ -7,7 +7,7 @@ export const serverOf: () => FastifyInstance = () => {
   const server = fastify()
 
   server.get('/ping', async (request, reply) => {
-    return reply.status(200).send({ msg: 'pong!' })
+    return reply.status(200).send({ msg: 'hello!' })
   })
 
   server.register(TodoRouter, { prefix: '/api' })
