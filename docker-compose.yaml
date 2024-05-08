@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8888:8888"  
+    environment:
+      - PORT=8888
+      - HOST=0.0.0.0
+      - MONGO_CONNECTION_STRING=mongodb+srv://arthurwang0815:Fairyqueen0815@cluster0.6yeneln.mongodb.net/
+    depends_on:
+      - mongodb
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "3000:3000" 
+    depends_on:
+      - backend
+
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: arthurwang0815
+      MONGO_INITDB_ROOT_PASSWORD: Fairyqueen0815
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
+    # This named volume persists MongoDB data across container restarts

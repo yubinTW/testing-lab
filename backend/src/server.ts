@@ -17,11 +17,18 @@ export const serverOf: () => FastifyInstance = () => {
 
 export const serverStart: (appConfig: AppConfig) => (server: FastifyInstance) => Promise<FastifyInstance> =
   (appConfig) => async (server) => {
-    await establishConnection(appConfig.mongoConnectionString)
-    const listenOptions: FastifyListenOptions = {
-      port: appConfig.port,
-      host: appConfig.host
+    try {
+      await establishConnection(appConfig.mongoConnectionString);
+      const listenOptions: FastifyListenOptions = {
+        port: appConfig.port,
+        host: appConfig.host
+      };
+      await server.listen(listenOptions);
+      console.log(`Server listening on ${appConfig.host}:${appConfig.port}`);
+      return server;
+    } catch (error) {
+      console.error('Error starting server:', error);
+      process.exit(1); // Ensure exit with error for Docker to know something went wrong
     }
-    await server.listen(listenOptions)
-    return server
-  }
+  };
+
