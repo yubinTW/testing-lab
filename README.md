@@ -56,11 +56,16 @@ cd frontend
 npm run dev
 ```
 
-Visit
-<http://localhost:5173>
+Visit <http://localhost:5173>
 
-### Run cypress test
+### Run playwright test
 
 ```bash
-npm run cy:test
+npm run test:e2e
+```
+
+show playwright report
+
+```bash
+npx playwright show-report
 ```
