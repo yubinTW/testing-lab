@@ -10,7 +10,7 @@ describe('Todo API Testing', () => {
   })
 
   test('Given an empty array return from repo function, When send a GET request to /api/v1/todos, Then it should response an empty array', async () => {
-    // assert: stub the repo function to return an empty array
+    // arrange: stub the repo function to return an empty array
     vi.spyOn(TodoRepo, 'findAllTodos').mockImplementation(async () => [])
 
     // act: send a GET request to /api/v1/todos
